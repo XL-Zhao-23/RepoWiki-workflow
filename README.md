@@ -1,35 +1,57 @@
 
 # 📚 RepoWiki Kit
 
-> **A Codebase Wiki Generation Workflow for AI Agents**  
-> 为 AI Agent 提供的代码库 Wiki 生成工作流。
+> **A Codebase Wiki Generation Skill & Toolkit for AI Agents**  
+> 为 AI Agent 提供的代码库 Wiki 生成 Skill 与工具包。
 
-RepoWiki Kit 是一个面向 AI Agent 的代码库 Wiki 生成工具包。
+RepoWiki Kit 是一个面向 AI Agent 的代码库 Wiki 生成 **Skill + 工具包**。
 
-它通过本地脚本扫描代码库、提取结构化上下文、生成标准化 Prompt，并为 AI Agent 提供一套可执行的 Wiki 生成流程。AI Agent 只需要按照总控提示词执行，即可完成代码扫描、Wiki 规划、页面生成、Markdown 输出和 MkDocs 构建，最终得到一个可浏览的项目 Wiki。
+它将可执行提示词、上下文管理规则、本地扫描脚本、Prompt 生成器和 MkDocs 输出规范组合在一起，使 AI Agent 能够按照既定流程读取代码库、提取结构化上下文、规划 Wiki、生成页面文档，并最终构建出一个可浏览的项目 Wiki。
 
 ---
 
-## ✨ Why RepoWiki Kit?
+## ✨ What is RepoWiki Kit?
 
-很多代码库并不缺代码，缺的是一套能帮助人快速理解系统的文档。
+RepoWiki Kit 不是一个单纯的脚本工具，也不是一组零散 Prompt。
 
-RepoWiki Kit 的目标不是生成一份简单 README，而是将代码库转化为结构化 Wiki：
+它由两部分组成：
 
-- 🧭 项目总览
-- 🏗️ 系统架构
-- 🧩 模块说明
-- 🔎 关键类与方法说明
-- ⚙️ 配置说明
-- 📈 Mermaid 架构图与流程图
+| 组成 | 作用 |
+|---|---|
+| **Skill** | 定义 AI Agent 如何执行代码库 Wiki 生成任务，包括总控提示词、页面处理规则、上下文隔离策略和质量优先原则 |
+| **Toolkit** | 提供本地脚本和工程化能力，包括代码扫描、结构提取、Prompt 生成、输出目录组织和 MkDocs 构建支持 |
 
-它特别适合：
+换句话说：
 
-- 快速理解陌生代码库
-- 为 Java 后端项目生成内部 Wiki
-- 辅助新人 onboarding
-- 将代码分析、Prompt 编排和 MkDocs 文档输出串成稳定流程
-- 为 AI Agent 提供可执行、可复用的代码库文档生成流程
+```text
+Skill 负责告诉 AI Agent 怎么做
+Toolkit 负责提供 AI Agent 执行任务所需的工具
+````
+
+AI Agent 只需要按照总控提示词执行，即可完成从代码库扫描到 Wiki 输出的完整过程。
+
+---
+
+## 🧭 Why RepoWiki Kit?
+
+很多代码库并不缺代码，缺的是一套能帮助人快速理解系统的结构化文档。
+
+RepoWiki Kit 的目标不是生成一份简单 README，而是帮助 AI Agent 将代码库转化为一套可浏览、可维护、可继续迭代的项目 Wiki：
+
+* 🧭 项目总览
+* 🏗️ 系统架构
+* 🧩 模块说明
+* 🔎 关键类与方法说明
+* ⚙️ 配置说明
+* 📈 Mermaid 架构图与流程图
+
+它适合用于：
+
+* 快速理解陌生代码库
+* 为 Java 后端项目生成内部 Wiki
+* 辅助新人 onboarding
+* 将代码扫描、Prompt 编排、AI Agent 执行和 MkDocs 输出串成稳定流程
+* 为 AI Agent 提供可复用的代码库文档生成能力
 
 ---
 
@@ -39,37 +61,39 @@ RepoWiki Kit 的目标不是生成一份简单 README，而是将代码库转化
 Target Repository
         │
         ▼
-Local Scanner
+RepoWiki Kit
         │
-        ├── repo_tree.md
-        ├── java_symbols.json
-        ├── important_files.json
-        └── scan_summary.json
+        ├── Skill
+        │   ├── run_repo_wiki.prompt.md
+        │   ├── page generation rules
+        │   ├── context isolation rules
+        │   └── quality-first rules
         │
-        ▼
-Prompt Builder
-        │
-        ├── 00_wiki_plan.prompt.md
-        └── pages/*.prompt.md
+        └── Toolkit
+            ├── scanner.py
+            ├── prompt_builder.py
+            └── mkdocs.yml
         │
         ▼
 AI Agent
         │
-        ├── wiki_plan.json
-        └── Wiki Markdown Pages
+        ├── runs local scripts
+        ├── reads generated prompts
+        ├── creates wiki_plan.json
+        └── writes Wiki Markdown pages
         │
         ▼
 MkDocs
         │
         ▼
 Browsable Codebase Wiki
-````
+```
 
 RepoWiki Kit 将任务分为三类：
 
 | 类型    | 负责方      | 说明                                     |
 | ----- | -------- | -------------------------------------- |
-| 确定性任务 | 本地脚本     | 扫描代码、提取结构、生成 Prompt、组织输出路径             |
+| 确定性任务 | Toolkit  | 扫描代码、提取结构、生成 Prompt、组织输出路径             |
 | 生成性任务 | AI Agent | 理解上下文、规划 Wiki、生成 Markdown、绘制 Mermaid 图 |
 | 展示任务  | MkDocs   | 将 Markdown 渲染为可浏览的文档站点                 |
 
@@ -84,6 +108,7 @@ RepoWiki Kit 将任务分为三类：
 * 🧭 项目级 Wiki 规划 Prompt 生成
 * 🧩 页面级 Wiki Prompt 生成
 * 🧱 页面上下文隔离，减少生成污染
+* 🎯 质量优先规则，避免低质量短输出
 * 📝 Markdown Wiki 输出
 * 🌐 MkDocs 文档站点构建
 * 🤖 面向 AI Agent 执行
@@ -112,7 +137,7 @@ your-project/
 repo_wiki_kit/run_repo_wiki.prompt.md
 ```
 
-它会按照总控提示词完成：
+AI Agent 会按照总控提示词完成：
 
 ```text
 扫描代码库
@@ -159,9 +184,9 @@ output/
 
 ## 🧱 Context Isolation
 
-RepoWiki Kit 强调 **页面级上下文隔离**。
+RepoWiki Kit 的 Skill 部分强调 **页面级上下文隔离**。
 
-生成每个 Wiki 页面时，只应使用：
+生成每个 Wiki 页面时，AI Agent 只应使用：
 
 ```text
 总控规则
@@ -179,6 +204,14 @@ RepoWiki Kit 强调 **页面级上下文隔离**。
 * 模块职责混淆
 * 调用链误推断
 
+如果当前页面信息不足，应明确标注：
+
+```text
+需要人工确认
+```
+
+而不是猜测或编造。
+
 ---
 
 ## 🎯 Quality First
@@ -187,12 +220,13 @@ RepoWiki Kit 强调 **页面级上下文隔离**。
 
 RepoWiki Kit 追求的是能帮助研发人员理解代码库的高质量 Wiki，而不是形式化的 Markdown 堆叠。
 
-如果上下文过长，应：
+如果上下文过长，AI Agent 应：
 
 * 拆分页面
 * 分批生成
 * 明确续写边界
 * 标注“需要人工确认”
+* 保留关键源码依据和模块关系
 
 不要用粗略总结替代关键分析。
 
@@ -204,13 +238,44 @@ RepoWiki Kit is:
 
 ```text
 AI-agent-ready
+Skill-based
+Toolkit-backed
 Prompt-driven
 Codebase-aware
 MkDocs-based
 Human-in-the-loop
 ```
 
-它不是一个简单 README 生成器，也不是一个完整在线文档平台，而是一套让 AI Agent 可以直接执行的代码库 Wiki 生成工作流。
+它的核心不是“自动生成一份文档”，而是为 AI Agent 提供一套可执行、可检查、可复用的代码库 Wiki 生成能力。
+
+---
+
+## 🗂️ Project Structure
+
+```text
+repo_wiki_kit/
+├── README.md
+├── scanner.py
+├── prompt_builder.py
+├── run_repo_wiki.prompt.md
+├── run_pages_to_wiki.prompt.md
+├── mkdocs.yml
+├── requirements.txt
+└── templates/
+    ├── manual_workflow.md
+    └── wiki_plan_example.json
+```
+
+核心文件说明：
+
+| 文件                            | 作用                                  |
+| ----------------------------- | ----------------------------------- |
+| `run_repo_wiki.prompt.md`     | AI Agent 执行完整 Wiki 生成任务的总控提示词       |
+| `run_pages_to_wiki.prompt.md` | 页面级 Prompt 批量处理规则                   |
+| `scanner.py`                  | 扫描代码库，提取目录树、Java 符号和重要文件摘要          |
+| `prompt_builder.py`           | 根据扫描结果生成 Wiki 规划 Prompt 和页面级 Prompt |
+| `mkdocs.yml`                  | MkDocs 文档站点配置                       |
+| `templates/`                  | 示例模板和参考文件                           |
 
 ---
 
@@ -232,5 +297,4 @@ Human-in-the-loop
 
 MIT
 
-```
 
