@@ -1,11 +1,9 @@
-下面是以 **“Wiki 生成工作流”** 为核心定位重新编写的 README，可直接作为 `README.md` 使用。
 
 ````markdown
-# Repo Wiki Manual
+# RepoWiki Workflow
 
-Repo Wiki Manual 是一个面向代码库的 **Wiki 生成工作流**。
+RepoWiki Workflow 是一个面向代码库的 Wiki 生成工作流。它通过本地脚本扫描代码库、提取结构化上下文、生成标准化 Prompt，并配合 JoyCoder / 龙虾等代码助手生成 MkDocs Wiki 文档。
 
-它不是一个完全自动化的文档生成平台，也不是一个单纯的 Prompt 集合，而是一套可落地的代码库 Wiki 生产流程：
 
 ```text
 扫描代码库
