@@ -1,4 +1,3 @@
-````markdown
 # 📚 RepoWiki Kit
 
 > **AI-assisted Codebase Wiki Generator**  
@@ -232,5 +231,4 @@ Human-in-the-loop
 
 MIT
 
-```
 ```
