@@ -1,5 +1,5 @@
 
-````markdown
+
 # RepoWiki Workflow
 
 RepoWiki Workflow 是一个面向代码库的 Wiki 生成工作流。它通过本地脚本扫描代码库、提取结构化上下文、生成标准化 Prompt，并配合 JoyCoder / 龙虾等代码助手生成 MkDocs Wiki 文档。
