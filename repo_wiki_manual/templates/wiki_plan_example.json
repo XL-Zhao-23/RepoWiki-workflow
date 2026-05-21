@@ -1,0 +1,37 @@
+{
+  "project_name": "demo-project",
+  "project_summary": "示例项目",
+  "tech_stack": ["Java", "Spring Boot"],
+  "main_modules": [
+    {
+      "name": "订单模块",
+      "paths": ["src/main/java/com/example/order"],
+      "responsibility": "处理订单查询、创建和状态流转",
+      "suggested_pages": ["modules/order.md"]
+    }
+  ],
+  "wiki_pages": [
+    {
+      "file": "overview.md",
+      "title": "项目总览",
+      "purpose": "帮助新同学快速理解项目用途、技术栈和代码结构",
+      "source_paths": ["README.md", "pom.xml", "src/main/java"],
+      "sections": ["项目定位", "技术栈", "模块划分", "启动入口"]
+    },
+    {
+      "file": "architecture.md",
+      "title": "系统架构",
+      "purpose": "说明系统分层、核心依赖和主要调用关系",
+      "source_paths": ["src/main/java"],
+      "sections": ["分层结构", "模块依赖", "核心流程", "外部依赖"]
+    }
+  ],
+  "diagrams": [
+    {
+      "file": "architecture.md",
+      "type": "mermaid flowchart",
+      "description": "系统架构图"
+    }
+  ],
+  "uncertainties": ["需要确认真实业务边界"]
+}
